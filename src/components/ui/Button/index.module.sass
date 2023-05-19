@@ -1,26 +1,41 @@
-@import 'styles/mixins'
+@import "styles/mixins"
 
 .btn
-  padding: 10px 20px
-  color: white
-  border-radius: 8px
+  border-radius: 12px
   transition: 300ms
 
-  &:hover
-    box-shadow: 3px 3px 3px rgba(black, 0.2)
-
   &_primary
-    background: $c-blue
+    background: $c-primary
+    color: black
 
-    &:disabled
-      background: rgba($c-blue, 0.4)
+    &:hover
+      background: transparent
+      outline: 1px solid $c-primary
+      color: white
 
-  &_secondary
-    background: $c-green
+  &_clear
+    outline: 1px solid $c-primary
+    color: white
 
-    &:disabled
-      background: rgba($c-green, 0.4)
+    &:hover
+      border: none
+      background: $c-primary
+      color: black
 
-  &_error
-    border: 1px solid red
-    color: red
+  &_disabled
+    opacity: 0.3
+
+  &_s
+    padding: 15px 30px
+    font-weight: 600
+    font-size: 20px
+
+  &_m
+    padding: 20px 40px
+    font-weight: 600
+    font-size: 22px
+
+  &_l
+    padding: 25px 50px
+    font-weight: 600
+    font-size: 24px

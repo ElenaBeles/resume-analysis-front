@@ -4,6 +4,7 @@ import {QueryClient, QueryClientProvider} from "react-query";
 
 import {Layout} from "./components/Layout";
 import {Main} from "./pages/Main";
+import {Form} from "./pages/Form";
 
 import './App.sass';
 
@@ -13,7 +14,9 @@ function App() {
       <QueryClientProvider client={queryClient}>
         <Layout>
           <Routes>
-            <Route index element={<Main />} />
+              <Route index element={<Main/>}/>
+              <Route path='form' element={<Form/>}/>
+              <Route path='result' element={<Form/>}/>
           </Routes>
         </Layout>
       </QueryClientProvider>

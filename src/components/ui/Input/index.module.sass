@@ -1,11 +1,14 @@
-@import 'styles/mixins'
+@import "styles/mixins"
 
 .container
   display: block
-  width: 100%
-  padding: 10px 20px
-  border: 1px solid $c-gray
-  border-radius: 8px
 
-  &_disabled
-    background: rgba(black, 0.1)
+  .label
+    margin-bottom: 8px
+
+  .control
+    width: 100%
+    color: white
+    padding: 12px 24px
+    border-radius: 8px
+    border: 1px solid $c-primary
