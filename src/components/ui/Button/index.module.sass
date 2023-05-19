@@ -1,0 +1,26 @@
+@import 'styles/mixins'
+
+.btn
+  padding: 10px 20px
+  color: white
+  border-radius: 8px
+  transition: 300ms
+
+  &:hover
+    box-shadow: 3px 3px 3px rgba(black, 0.2)
+
+  &_primary
+    background: $c-blue
+
+    &:disabled
+      background: rgba($c-blue, 0.4)
+
+  &_secondary
+    background: $c-green
+
+    &:disabled
+      background: rgba($c-green, 0.4)
+
+  &_error
+    border: 1px solid red
+    color: red
