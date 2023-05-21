@@ -1,18 +1,21 @@
 import cn from 'classnames';
 import styles from './index.module.sass';
+import {ChangeEvent} from "react";
 
 export interface InputProps {
     value?: string;
     label?: string;
     placeholder?: string;
     disabled?: boolean;
-    onChange: (v: string) => void;
+    onChange: (event: ChangeEvent<HTMLInputElement>) => void;
     type?: 'password' | 'text';
     className?: string;
+    name?: string;
 }
 
 export const Input = (props: InputProps) => {
     const {
+        name,
         value,
         label,
         placeholder,
@@ -36,11 +39,9 @@ export const Input = (props: InputProps) => {
                 defaultValue={value}
                 type={type}
                 disabled={disabled}
+                name={name}
                 placeholder={placeholder}
-                onChange={v => {
-                    onChange(v.target.value ?? '')
-                    return v;
-                }}
+                onChange={onChange}
                 className={styles.control}
             />
         </label>

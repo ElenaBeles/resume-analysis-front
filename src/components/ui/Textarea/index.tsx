@@ -1,19 +1,19 @@
-import React, { FormEvent } from 'react';
+import React, {ChangeEvent} from 'react';
 import cn from 'classnames';
 
 import styles from './index.module.sass';
 
 interface Props {
-    value: string;
-    onChange: (e: string) => void;
+    label?: string;
     placeholder?: string;
     name?: string;
     className?: string;
+    onChange: (event: ChangeEvent<HTMLTextAreaElement>) => void
 }
 
 export const Textarea = (props: Props) => {
     const {
-        value,
+        label,
         onChange = () => {},
         placeholder,
         name = '',
@@ -22,15 +22,20 @@ export const Textarea = (props: Props) => {
     } = props;
 
     return (
+        <div className={styles.container}>
+            {
+                label &&
+                <p className={styles.label}>{label}</p>
+            }
         <textarea
             {...rest}
-            value={value}
-            onChange={e => onChange(e.target.value)}
-            aria-labelledby='aria-label'
-            id='textarea'
-            name={name}
+            onChange={onChange}
             placeholder={placeholder}
             className={cn(styles.textarea, className)}
+            name={name}
+            id='textarea'
+            aria-labelledby='aria-label'
         />
+        </div>
     );
 }

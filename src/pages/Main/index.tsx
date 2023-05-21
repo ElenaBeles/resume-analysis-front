@@ -1,4 +1,4 @@
-import {Button, ButtonSize, ButtonThemes} from "components/ui/Button";
+import {Button, ButtonSize} from "components/ui/Button";
 
 import styles from './index.module.sass';
 import {useNavigate} from "react-router";

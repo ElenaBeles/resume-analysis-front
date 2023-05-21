@@ -7,6 +7,7 @@ import styles from '../index.module.sass';
 interface Props {
     maskOptions: IMask.AnyMaskedOptions;
     onChange: (v: string) => void;
+    label?: string;
     value?: string;
     placeholder?: string;
     disabled?: boolean;
@@ -16,6 +17,7 @@ interface Props {
 
 export const MaskedInput = (props: Props) => {
     const {
+        label,
         value,
         placeholder,
         className,
@@ -28,7 +30,6 @@ export const MaskedInput = (props: Props) => {
 
     const [opts, setOpts] = useState<IMask.AnyMaskedOptions>(maskOptions);
     const { ref: inputMaskRef, unmaskedValue } = useIMask(opts, {
-
     });
 
     useEffect(() => {
@@ -37,6 +38,10 @@ export const MaskedInput = (props: Props) => {
 
     return (
         <label {...rest} className={cn(styles.container, disabled && styles.container_disabled, className)}>
+            {
+                label &&
+                <p className={styles.label}>{label}</p>
+            }
             <input
                 ref={inputMaskRef}
                 type={type}
