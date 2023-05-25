@@ -13,6 +13,9 @@ import {ProfessionalActivity} from "./blocks/ProfessionalActivity";
 
 import styles from './index.module.sass';
 import {MaskedInput} from "../../components/ui/Input/MaskedInput";
+import {useMutation} from "react-query";
+import {downloadFromForm, downloadFromPDF} from "../../queries";
+import {createSearchParams} from "react-router-dom";
 
 enum Steps {
     basic_information,
@@ -28,6 +31,8 @@ export const Form = () => {
 
     const handlePrevStep = () => setCurrentStep(prev => prev - 1);
     const handleNextStep = () => setCurrentStep(prev => prev + 1);
+
+    const submitMutation = useMutation((data: { resume: string }) => downloadFromForm(data));
 
     return (
         <section className={styles.container}>
@@ -180,8 +185,24 @@ export const Form = () => {
                                             size={ButtonSize.s}
                                             className={styles.submit}
                                             onClick={() => {
-                                                console.log(values)
-                                                // navigation('/result')
+                                                const validateForm = Object.fromEntries(Object.entries(values).filter(([_, v]) => v != ''));
+
+                                                const resume = Object.entries(validateForm).map(([key, value]) => `${key.replace('_', '-')} - ${value}`).join('. ');
+
+                                                const data = {
+                                                    resume
+                                                };
+
+                                                return submitMutation.mutate(data, {
+                                                    onSuccess: data => {
+                                                        navigation({
+                                                            pathname: '/result',
+                                                            search: createSearchParams({
+                                                                ...data
+                                                            }).toString()
+                                                        });
+                                                    }
+                                                });
                                             }}
                                         >
                                             Send

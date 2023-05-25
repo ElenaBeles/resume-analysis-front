@@ -7,6 +7,7 @@ import {Main} from "./pages/Main";
 import {Form} from "./pages/Form";
 
 import './App.sass';
+import {Result} from "./pages/Result";
 
 const queryClient = new QueryClient();
 function App() {
@@ -16,7 +17,7 @@ function App() {
           <Routes>
               <Route index element={<Main/>}/>
               <Route path='form' element={<Form/>}/>
-              <Route path='result' element={<Form/>}/>
+              <Route path='result' element={<Result/>}/>
           </Routes>
         </Layout>
       </QueryClientProvider>
